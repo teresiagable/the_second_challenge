@@ -1,11 +1,16 @@
 package gable.wallet.repository;
 
+import java.math.BigDecimal;
+
 import org.springframework.data.repository.CrudRepository;
 
 import gable.wallet.entity.PlayerAccount;
 
 public interface PlayerWalletRepository extends CrudRepository<PlayerAccount,Integer>{
 	
-	PlayerAccount findById(int playerId);
+	PlayerAccount findByPlayerId(int playerId);
+	
+	BigDecimal getAmountByPlayerId(int playerId);
+	
 
 }

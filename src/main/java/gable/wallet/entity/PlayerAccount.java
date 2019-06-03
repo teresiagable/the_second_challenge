@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="player_account")
+@Table(name = "player_account")
 public class PlayerAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,13 +19,21 @@ public class PlayerAccount {
 	public PlayerAccount() {
 	}
 
+	public PlayerAccount(BigDecimal amount) {
+		this.amount = amount;
+	}
+
 	public int getPlayerId() {
 		return playerId;
 	}
 
-	public BigDecimal getAmount() {
+	protected BigDecimal getAmount() {
 		return amount;
 	}
 
+	protected PlayerAccount updateAccountAmount(BigDecimal transactionAmount) {
+		this.amount = this.amount.add(transactionAmount);
+		return this;
+	}
 
 }
