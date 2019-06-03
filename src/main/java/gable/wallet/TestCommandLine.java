@@ -27,14 +27,7 @@ public class TestCommandLine  implements CommandLineRunner{
 		PlayerAccount p3 = walletRepo.save(new PlayerAccount(BigDecimal.ZERO));
 		
 		System.out.println("All player wallets "); 
-		walletRepo.findAll().forEach(System.out::println);
-		
-		BigDecimal bd = walletRepo.getAmountByPlayerId(1);
-		System.out.println("Player id 1 amount "+ bd);
-		
-
-		
-		
+		walletRepo.findAll().forEach(System.out::println);		
 		
 		
 	}

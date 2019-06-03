@@ -10,7 +10,6 @@ public interface PlayerWalletRepository extends CrudRepository<PlayerAccount,Int
 	
 	PlayerAccount findByPlayerId(int playerId);
 	
-	BigDecimal getAmountByPlayerId(int playerId);
-	
+
 
 }

@@ -27,7 +27,7 @@ public class PlayerAccount {
 		return playerId;
 	}
 
-	protected BigDecimal getAmount() {
+	public BigDecimal getAmount() {
 		return amount;
 	}
 
