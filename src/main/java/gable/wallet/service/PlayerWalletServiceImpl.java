@@ -28,41 +28,16 @@ public class PlayerWalletServiceImpl implements PlayerWalletService   {
 		this.transRepo = transRepo;
 	}
 	
-//	public boolean commitTransaction(PlayerAccount thePlayerAccount, BigDecimal changeAmount) {
-//		boolean result = false;
-//		BigDecimal theNewAmount = thePlayerAccount.getAmount().add(changeAmount);
-//		if (theNewAmount.compareTo(BigDecimal.ZERO) >= 0) {
-//			PlayerTransaction newTransaction = new PlayerTransaction(thePlayerAccount,changeAmount,theNewAmount);
-//			
-//			//this.amount = theNewAmount;
-//			result = true;
-//		}
-//		return result;
-//	}
-	
 
 	@Override
 	public PlayerAccount createAccount(PlayerAccount playerAccount) {
 		return accountRepo.save(playerAccount);
 	}
-	
 
-//	@Override
-//	public PlayerTransaction credit(String externalId, PlayerAccount playerAccount, BigDecimal amount) {
-//
-//		PlayerTransaction transaction = new PlayerTransaction();
-//		PlayerAccount wallet =  playerAccount.addToAccountSum(amount);
-//		
-//		transaction.create(externalId, playerAccount, amount);
-//		
-//		accountRepo.save(wallet);
-//		return transRepo.save(transaction);
-//				
-//	}
 
 	@Override
-	public PlayerTransaction creditDebit(String externalId, PlayerAccount playerAccount, BigDecimal amount)
-			throws SQLIntegrityConstraintViolationException, NotEnoughMoneyException {
+	public PlayerTransaction creditDebit(String externalId, PlayerAccount playerAccount, BigDecimal amount) {
+			//throws SQLIntegrityConstraintViolationException, NotEnoughMoneyException {
 		BigDecimal accountSum = playerAccount.getAccountSum();
 
 		if (accountSum.add(amount).compareTo(BigDecimal.ZERO) < 0) {
@@ -93,6 +68,14 @@ public class PlayerWalletServiceImpl implements PlayerWalletService   {
 		Optional<PlayerTransaction> result = transRepo.findById(transactionId);
 		
 		return result.orElseThrow(() -> new EntityNotFoundException("Transaction with id " + transactionId + " could not be found"));		
+	}
+
+
+	@Override
+	public PlayerAccount findPlayerById(int playerId) {
+		Optional<PlayerAccount> result = accountRepo.findById(playerId);
+		
+		return result.orElseThrow(() -> new EntityNotFoundException("Transaction with id " + playerId + " could not be found"));
 	}
 	
 	

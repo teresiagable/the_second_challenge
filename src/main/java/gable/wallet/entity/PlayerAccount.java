@@ -14,12 +14,14 @@ public class PlayerAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int playerId;
+	private String name;
 	private BigDecimal amount;
 
 	public PlayerAccount() {
 	}
 
-	public PlayerAccount(BigDecimal amount) {
+	public PlayerAccount(String name, BigDecimal amount) {
+		this.name = name;
 		this.amount = amount;
 	}
 
