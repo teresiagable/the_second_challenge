@@ -27,13 +27,23 @@ public class PlayerAccount {
 		return playerId;
 	}
 
-	public BigDecimal getAmount() {
+	
+	//AccountSum instead of amount to hide the "real" name of the field.
+	public BigDecimal getAccountSum() {
 		return amount;
 	}
 
-	protected PlayerAccount updateAccountAmount(BigDecimal transactionAmount) {
+	//AccountSum instead of amount to hide the "real" name of the field.
+	public PlayerAccount addToAccountSum(BigDecimal transactionAmount) {
 		this.amount = this.amount.add(transactionAmount);
 		return this;
 	}
+
+	@Override
+	public String toString() {
+		return "PlayerAccount Id=" + playerId + ", accountsum=" + amount + "]";
+	}
+	
+	
 
 }
