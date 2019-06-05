@@ -26,12 +26,12 @@ public class TransactionForm {
 	public void setPlayerId(int playerId) {
 		this.playerId = playerId;
 	}
-//	public BigDecimal getAmount() {
-//		return amount;
-//	}
-//	public void setAmount(BigDecimal amount) {
-//		this.amount = amount;
-//	}
+	public BigDecimal getAmount() {
+		return amount;
+	}
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
 	
 	
 	

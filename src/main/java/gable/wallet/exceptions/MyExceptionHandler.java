@@ -1,10 +1,10 @@
 package gable.wallet.exceptions;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,11 +24,11 @@ public class MyExceptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
 	}
 	
-	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-	public ResponseEntity<Map<String, Object>> handleSQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException ex){
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<Map<String, Object>> handleConstraintViolationException(ConstraintViolationException ex){
 		Map<String, Object> errors = new HashMap<>();
 		errors.put("timestamp", LocalDateTime.now());
-		errors.put("message", ex.getMessage());
+		errors.put("message", ex.getSQLException().getLocalizedMessage().substring(0, 38));
 		errors.put("code", HttpStatus.CONFLICT.value());
 		return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
 	}

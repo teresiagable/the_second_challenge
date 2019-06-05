@@ -20,22 +20,21 @@ public class PlayerAccount {
 	public PlayerAccount() {
 	}
 
-	public PlayerAccount(String name, BigDecimal amount) {
+	public PlayerAccount(String name) {
 		this.name = name;
-		this.amount = amount;
+		this.amount = BigDecimal.ZERO;
 	}
 
 	public int getPlayerId() {
 		return playerId;
 	}
 
-	
-	//AccountSum instead of amount to hide the "real" name of the field.
+	// AccountSum instead of amount to hide the "real" name of the field.
 	public BigDecimal getAccountSum() {
 		return amount;
 	}
 
-	//AccountSum instead of amount to hide the "real" name of the field.
+	// AccountSum instead of amount to hide the "real" name of the field.
 	public PlayerAccount addToAccountSum(BigDecimal transactionAmount) {
 		this.amount = this.amount.add(transactionAmount);
 		return this;
@@ -45,7 +44,13 @@ public class PlayerAccount {
 	public String toString() {
 		return "PlayerAccount Id=" + playerId + ", accountsum=" + amount + "]";
 	}
-	
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }
