@@ -33,11 +33,20 @@ public class TestCommandLine  implements CommandLineRunner{
 		PlayerAccount p1 = pwService.createAccount(new PlayerAccount("nisse"));
 		PlayerAccount p2 = pwService.createAccount(new PlayerAccount("lisa"));
 		
-		pwService.creditDebit("ext123", p1, BigDecimal.valueOf(100.00));
-		pwService.creditDebit("ext124", p1, BigDecimal.valueOf(33.333333));
+		pwService.creditDebit("ext1123", p1, BigDecimal.valueOf(100.00));
+		pwService.creditDebit("ext1124", p1, BigDecimal.valueOf(-33.3333));
+		pwService.creditDebit("ext1125", p1, BigDecimal.valueOf(10));
+		pwService.creditDebit("ext1126", p1, BigDecimal.valueOf(22));
+		pwService.creditDebit("ext1127", p1, BigDecimal.valueOf(532));
+				
+		pwService.creditDebit("ext2125", p2, BigDecimal.valueOf(10));
+		pwService.creditDebit("ext2126", p2, BigDecimal.valueOf(25.50));
+		pwService.creditDebit("ext2127", p2, BigDecimal.valueOf(25));
+		pwService.creditDebit("ext2128", p2, BigDecimal.valueOf(-15.50));
+
+//		pwService.creditDebit("ext1299", p2, BigDecimal.valueOf(-99993.333));
+//		pwService.creditDebit("ext124", p2, BigDecimal.valueOf(-3.333));
 		
-		pwService.creditDebit("ext125", p1, BigDecimal.valueOf(-33.333333));
-//		PlayerTransaction pt = pwService.creditDebit("ext126", p2, BigDecimal.valueOf(-3.333));
 		
 		System.out.println("All player wallets "); 
 		accountRepo.findAll().forEach(System.out::println);		

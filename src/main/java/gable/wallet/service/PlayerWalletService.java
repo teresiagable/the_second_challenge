@@ -9,10 +9,10 @@ import gable.wallet.entity.PlayerTransaction;
 public interface PlayerWalletService {
 
 	PlayerAccount createAccount(PlayerAccount playerAccount);
-	
+
 	PlayerAccount findPlayerById(int playerId);
 
-	PlayerTransaction creditDebit(String externalId, PlayerAccount playerAccount, BigDecimal amount);
+	PlayerTransaction creditDebit(String transactionId, PlayerAccount playerAccount, BigDecimal amount);
 
 	List<PlayerTransaction> getTransactionsByPlayerId(int playerId);
 
@@ -21,5 +21,7 @@ public interface PlayerWalletService {
 	List<PlayerTransaction> getAllTransactions();
 
 	List<PlayerAccount> getAllPlayerAccounts();
+
+	PlayerAccount getPlayerAccount();
 
 }

@@ -14,9 +14,9 @@ import javax.persistence.Table;
 public class PlayerTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int transactionId;
+	private int id;
 	@Column(unique = true)
-	private String externalId;
+	private String transactionId;
 	private int playerId;
 	private BigDecimal amount;
 	private BigDecimal playerAmountAfter;
@@ -29,12 +29,12 @@ public class PlayerTransaction {
 		this.playerAmountAfter = playerAmountAfter;
 	}
 
-	public int getTransactionId() {
-		return transactionId;
+	public int getid() {
+		return id;
 	}
 
-	public String getExternalId() {
-		return externalId;
+	public String getTransactionId() {
+		return transactionId;
 	}
 
 	public int getPlayerId() {
@@ -45,9 +45,9 @@ public class PlayerTransaction {
 		return amount;
 	}
 
-	public PlayerTransaction(String externalId, int playerId, BigDecimal amount, BigDecimal playerAmountAfter) {
+	public PlayerTransaction(String transactionId, int playerId, BigDecimal amount, BigDecimal playerAmountAfter) {
 		super();
-		this.externalId = externalId;
+		this.transactionId = transactionId;
 		this.playerId = playerId;
 		this.amount = amount;
 		this.playerAmountAfter = playerAmountAfter;
@@ -58,13 +58,13 @@ public class PlayerTransaction {
 
 	@Override
 	public String toString() {
-		return "PlayerTransaction [transactionId=" + transactionId + ", externalId=" + externalId + ", playerId="
+		return "PlayerTransaction [id=" + id + ", transactionId=" + transactionId + ", playerId="
 				+ playerId + ", amount=" + amount + ", playerAmountAfter=" + playerAmountAfter + "]";
 	}
 
-	public void create(String externalId, PlayerAccount playerAccount, BigDecimal changeAmount) {
+	public void create(String transactionId, PlayerAccount playerAccount, BigDecimal changeAmount) {
 
-		this.externalId = externalId;
+		this.transactionId = transactionId;
 		this.playerId = playerAccount.getPlayerId();
 		this.amount = changeAmount;
 		this.playerAmountAfter = playerAccount.getAccountSum();

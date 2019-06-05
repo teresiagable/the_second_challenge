@@ -40,11 +40,6 @@ public class PlayerAccount {
 		return this;
 	}
 
-	@Override
-	public String toString() {
-		return "PlayerAccount Id=" + playerId + ", accountsum=" + amount + "]";
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -53,4 +48,11 @@ public class PlayerAccount {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "PlayerAccount Id= " + playerId + ", name= " + name + ", amount= " + amount ;
+	}
+
+	
+	
 }

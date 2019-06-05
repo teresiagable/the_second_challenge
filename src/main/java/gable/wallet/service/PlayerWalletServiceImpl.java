@@ -1,7 +1,6 @@
 package gable.wallet.service;
 
 import java.math.BigDecimal;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +32,7 @@ public class PlayerWalletServiceImpl implements PlayerWalletService {
 	}
 
 	@Override
-	public PlayerTransaction creditDebit(String externalId, PlayerAccount playerAccount, BigDecimal amount) {
+	public PlayerTransaction creditDebit(String transactionId, PlayerAccount playerAccount, BigDecimal amount) {
 
 		BigDecimal accountSum = playerAccount.getAccountSum();
 
@@ -44,7 +43,7 @@ public class PlayerWalletServiceImpl implements PlayerWalletService {
 			PlayerTransaction transaction = new PlayerTransaction();
 			PlayerAccount wallet = playerAccount.addToAccountSum(amount);
 
-			transaction.create(externalId, playerAccount, amount);
+			transaction.create(transactionId, playerAccount, amount);
 
 			accountRepo.save(wallet);
 			return transRepo.save(transaction);
@@ -74,7 +73,6 @@ public class PlayerWalletServiceImpl implements PlayerWalletService {
 				.orElseThrow(() -> new EntityNotFoundException("Player with id " + playerId + " could not be found"));
 	}
 
-
 	@Override
 	public List<PlayerTransaction> getAllTransactions() {
 		return (List<PlayerTransaction>) transRepo.findAll();
@@ -83,6 +81,12 @@ public class PlayerWalletServiceImpl implements PlayerWalletService {
 	@Override
 	public List<PlayerAccount> getAllPlayerAccounts() {
 		return (List<PlayerAccount>) accountRepo.findAll();
+	}
+
+	@Override
+	public PlayerAccount getPlayerAccount() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

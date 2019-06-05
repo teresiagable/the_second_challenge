@@ -1,6 +1,6 @@
 package gable.wallet.exceptions;
 
-public class EntityNotFoundException extends RuntimeException{
+public class EntityNotFoundException extends RuntimeException {
 
 	/**
 	 * 
@@ -8,11 +8,11 @@ public class EntityNotFoundException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 
 	public EntityNotFoundException() {
-		super();		
+		super();
 	}
 
 	public EntityNotFoundException(String message) {
-		super(message);		
+		super(message);
 	}
 
 	@Override

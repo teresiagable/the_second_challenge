@@ -6,11 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 
 import gable.wallet.entity.PlayerTransaction;
 
-public interface PlayerTransactionRepository extends CrudRepository<PlayerTransaction,Integer>{
-	
-	List<PlayerTransaction> findAllByPlayerId(int playerId);
+public interface PlayerTransactionRepository extends CrudRepository<PlayerTransaction, Integer> {
 
-	PlayerTransaction save(PlayerTransaction playerTransaction) ;
-	
+	List<PlayerTransaction> findAllByPlayerId(int playerId);
 
 }

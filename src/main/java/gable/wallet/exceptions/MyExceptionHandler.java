@@ -13,28 +13,27 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice(value = "gable.wallet")
 public class MyExceptionHandler extends ResponseEntityExceptionHandler {
-	
-	
+
 	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<Map<String, Object>> handleEntityNotFoundException(EntityNotFoundException ex){
+	public ResponseEntity<Map<String, Object>> handleEntityNotFoundException(EntityNotFoundException ex) {
 		Map<String, Object> errors = new HashMap<>();
 		errors.put("timestamp", LocalDateTime.now());
 		errors.put("message", ex.getMessage());
-		errors.put("code",HttpStatus.NOT_FOUND.value());
+		errors.put("code", HttpStatus.NOT_FOUND.value());
 		return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
 	}
-	
+
 	@ExceptionHandler(ConstraintViolationException.class)
-	public ResponseEntity<Map<String, Object>> handleConstraintViolationException(ConstraintViolationException ex){
+	public ResponseEntity<Map<String, Object>> handleConstraintViolationException(ConstraintViolationException ex) {
 		Map<String, Object> errors = new HashMap<>();
 		errors.put("timestamp", LocalDateTime.now());
 		errors.put("message", ex.getSQLException().getLocalizedMessage().substring(0, 38));
 		errors.put("code", HttpStatus.CONFLICT.value());
 		return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
 	}
-	
+
 	@ExceptionHandler(NotEnoughMoneyException.class)
-	public ResponseEntity<Map<String, Object>> handleNotEnoughMoneyException(NotEnoughMoneyException ex){
+	public ResponseEntity<Map<String, Object>> handleNotEnoughMoneyException(NotEnoughMoneyException ex) {
 		Map<String, Object> errors = new HashMap<>();
 		errors.put("timestamp", LocalDateTime.now());
 		errors.put("message", ex.getMessage());
